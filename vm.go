@@ -533,6 +533,12 @@ func SnippetToAST(filename string, snippet string) (ast.Node, error) {
 	return program.SnippetToAST(ast.DiagnosticFileName(filename), filename, snippet)
 }
 
+// SnippetToRawAST converts a Jsonnet code snippet to an AST (without any transformations).
+// Any fodder after the final token is returned as well.
+func SnippetToRawAST(filename string, snippet string) (ast.Node, ast.Fodder, error) {
+	return parser.SnippetToRawAST(ast.DiagnosticFileName(filename), "", snippet)
+}
+
 // Version returns the Jsonnet version number.
 func Version() string {
 	return version
